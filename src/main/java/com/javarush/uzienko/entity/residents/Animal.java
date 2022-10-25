@@ -154,7 +154,7 @@ public abstract class Animal implements Resident {
     private void starve() {
         if (lock.tryLock()) {
             try {
-                getProperties().setCurrentWeight(getProperties().getCurrentWeight() - getProperties().getWeight() / 31.);
+                getProperties().setCurrentWeight(getProperties().getCurrentWeight() - getProperties().getWeight() / 10.);
                 if (getProperties().getCurrentWeight() < 0) {
                     properties.setDead(true);
                     godsWillService.removeResident(this);

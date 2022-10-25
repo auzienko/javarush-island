@@ -81,6 +81,10 @@ public class GodsWillServiceImpl implements GodsWillService {
             return;
         }
 
+        if (resident.getProperties().getWeight() / 2 > resident.getProperties().getCurrentWeight()) {
+            return;
+        }
+
         int health = (int) (resident.getProperties().getCurrentWeight() / resident.getProperties().getWeight() * 100 / 4);
 
         if (Generator.get(0, 100) < health || resident instanceof Plant) {

@@ -33,9 +33,10 @@ public class MainLoopWorker extends Thread {
         ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
         executor.scheduleAtFixedRate(() -> {
             try {
-                do {
-                    iteration();
-                } while (statisticService.getSummary() > 0);
+                iteration();
+                if (statisticService.getSummary() == 0) {
+                    executor.shutdown();
+                }
             } catch (IslandException e) {
                 throw new IslandException(e);
             }
